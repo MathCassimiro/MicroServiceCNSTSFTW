@@ -6,6 +6,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import java.util.Date;
 
 public class ColaboradorModel {
 
@@ -16,11 +18,14 @@ public class ColaboradorModel {
     @Column(name = "nome")
     private String nome;
 
-    @Column(name = "cpfcnpj")
-    private String cpfCnpj;
+    @Column(name = "cpf")
+    private String cpf;
 
     @Column(name = "status")
     private boolean status;
+
+    @Column(name = "datanasc")
+    private Date dataNascimento;
 
     @ManyToOne
     @JoinColumn(name = "endereco")
@@ -32,20 +37,22 @@ public class ColaboradorModel {
     @Column(name = "telefone")
     private String telefone;
 
-    @Column(name = "tipocliente")
-    private String tipoCliente;
+    @OneToOne
+    @JoinColumn(name = "usuario")
+    private UsuarioModel usuario;
 
     public ColaboradorModel() {
     }
 
-    public ColaboradorModel(String nome, String cpfCnpj, boolean status, EnderecoModel endereco, String email, String telefone, String tipoCliente) {
+    public ColaboradorModel(String nome, String cpf, boolean status, Date dataNascimento, EnderecoModel endereco, String email, String telefone, UsuarioModel usuario) {
         this.nome = nome;
-        this.cpfCnpj = cpfCnpj;
+        this.cpf = cpf;
         this.status = status;
+        this.dataNascimento = dataNascimento;
         this.endereco = endereco;
         this.email = email;
         this.telefone = telefone;
-        this.tipoCliente = tipoCliente;
+        this.usuario = usuario;
     }
 
     public Long getCodigo() {
@@ -64,12 +71,12 @@ public class ColaboradorModel {
         this.nome = nome;
     }
 
-    public String getCpfCnpj() {
-        return cpfCnpj;
+    public String getCpf() {
+        return cpf;
     }
 
-    public void setCpfCnpj(String cpfCnpj) {
-        this.cpfCnpj = cpfCnpj;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public boolean isStatus() {
@@ -78,6 +85,14 @@ public class ColaboradorModel {
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    public Date getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(Date dataNascimento) {
+        this.dataNascimento = dataNascimento;
     }
 
     public EnderecoModel getEndereco() {
@@ -104,12 +119,12 @@ public class ColaboradorModel {
         this.telefone = telefone;
     }
 
-    public String getTipoCliente() {
-        return tipoCliente;
+    public UsuarioModel getUsuario() {
+        return usuario;
     }
 
-    public void setTipoCliente(String tipoCliente) {
-        this.tipoCliente = tipoCliente;
+    public void setUsuario(UsuarioModel usuario) {
+        this.usuario = usuario;
     }
 
 }
