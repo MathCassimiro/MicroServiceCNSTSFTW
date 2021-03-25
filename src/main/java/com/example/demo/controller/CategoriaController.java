@@ -22,7 +22,7 @@ import java.util.Map;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("crudWeb/v2")
+@RequestMapping("pecacerta/v2")
 public class CategoriaController {
 
     @Autowired
